@@ -1,0 +1,73 @@
+// Variables
+@base-url: "";
+@text-colour: #FFF;
+@background-colour: #AFA;
+@grey: #111;
+@page-colour: #000;
+@page-width: 800px;
+@page-height: 100%;
+@padding-size: 10px;
+@text-size: 12pt;
+
+// Mixins
+.border-radius (@radius: 5px) {
+  border-radius: @radius;
+  -moz-border-radius: @radius;
+  -webkit-border-radius: @radius;
+}
+
+#bundle {
+  .tile(@image-name) {
+    background-image: url("@{base-url}/images/@{image-name}");
+    background-repeat: repeat;
+  }
+}
+
+// Less
+html {
+  background: @page-colour;
+  //#bundle > .tile("dirt.jpg");
+}
+
+#container {
+  margin: 0 auto;
+  padding-top: @padding-size;
+  width: @page-width;
+  font-size: @text-size;
+}
+
+.content {
+  padding: @padding-size;
+  color: @text-colour;
+  background: fade(@background-colour, percentage(0.8));
+  height: @page-height * 0.8;
+  .border-radius(2px);
+
+  p {
+    color: @grey;
+  }
+}
+
+#header {
+  @header-colour: @background-colour - @grey * 10;
+
+  background: @header-colour;
+
+  &:hover {
+    background: lighten(@header-colour, 10%);
+  }
+
+  h1 {
+    text-indent: 30px;
+  }
+}
+
+#footer {
+  text-indent: @padding-size * 1.5;
+  color: lighten(@grey, 80%);
+  font-size: @text-size * 0.8;
+}
+
+.wrapper {
+  .border-radius();
+}
